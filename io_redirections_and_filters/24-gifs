@@ -1,2 +1,2 @@
 #!/bin/bash
-for file in $(find . -type f -iname '*.gif'); do echo "${file##*/}" | tr -d '.gif'; done | sort -f
+find . -type f -name "*.gif" -printf "%f\n" | while read -r file; do echo "${file%.gif}"; done | LC_ALL=C sort -f
