@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# List the contents of the current directory, displaying only the part after the first dash
-for file in *-*; do
-    name="${file#*-}"
-    echo "$name"
-done
+#Bash script that displays:
+#The content of the current directory
+#In a list format
+#Where only the part of the name after the first dash is displayed
+for file in *
+do
+    echo "$file" | cut -d "-" -f 2
