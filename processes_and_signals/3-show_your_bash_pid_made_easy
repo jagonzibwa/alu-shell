@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2009
+# Loop through all directories in /proc
+for pid in /proc/[0-9]*; do
+    # Check if the cmdline file exists for the process
+    if [ -f "$pid/cmdline" ]; then
+        # Read the command line of the process
+        cmdline=$(tr -d '\0' < "$pid/cmdline")
+        # Check if the command line contains the word "bash"
+        if [[ "$cmdline" == *bash* ]]; then
+            # Display the PID and the process name
+            process_name=$(basename "$pid")
+            echo "PID: $process_name, Process Name: $cmdline"
+        fi
+    fi
+done
